@@ -43,10 +43,10 @@ char    *get_next_line(int fd);
 
 ## How it Works
 
-- 1. **Memory Allocation**: The function allocates a buffer to store the read characters.
-- 2. **Buffer Management**: A static buffer is used to read chunks of data. When a newline character is encountered, the line is returned.
-- 3. **End of File**: When the end of the file is reached, NULL is returned, signaling that no more lines are available.
-- 4. **Multiple File Descriptors**: The function handles multiple file descriptors by storing static variables to keep track of the reading progress for each file.
+1. **Memory Allocation**: The function allocates a buffer to store the read characters.
+2. **Buffer Management**: A static buffer is used to read chunks of data. When a newline character is encountered, the line is returned.
+3. **End of File**: When the end of the file is reached, NULL is returned, signaling that no more lines are available.
+4. **Multiple File Descriptors**: The function handles multiple file descriptors by storing static variables to keep track of the reading progress for each file.
 
 ## Compilation
 
