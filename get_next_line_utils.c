@@ -12,15 +12,44 @@
 
 #include "get_next_line.h"
 
-int ft_strchr(char* line, char c)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t	len;
 
-	i = 0;
-	while (line[i])
-		if (line[i++] == c)
-			return --i;
-	return (-1);
+	len = 0;
+	if (!s)
+		return (0);
+	while (s[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strcpy(char *dest, const char *src)
+{
+	char	*original;
+
+	original = dest;
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return (original);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 
 void	*ft_calloc(size_t count, size_t size)
@@ -45,10 +74,12 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(temp_str, total_size);
 	return (temp_str);
 }
+
 void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }
+
 void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*p;
@@ -63,40 +94,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-	
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-char	*ft_strdup(const char *src)
-{
-	size_t	len;
-	char	*dub;
 
-	if (src == NULL)
-	{
-		dub = (char *)ft_calloc(1, sizeof(char));
-		if (dub == NULL)
-			return (NULL);
-		return (dub);
-	}
-	len = ft_strlen(src);
-	dub = (char *)ft_calloc(len + 1, sizeof(char));
-	if (dub == NULL)
-	{
-		return (NULL);
-	}
-	ft_strlcpy(dub, src, len + 1);
-	return (dub);
-}
 static char	*allocate_and_copy(const char *src, size_t len)
 {
 	char	*result;
@@ -106,6 +104,7 @@ static char	*allocate_and_copy(const char *src, size_t len)
 		ft_strlcpy(result, src, len + 1);
 	return (result);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	s1_len;
@@ -127,6 +126,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcpy(str_result + s1_len, s2, s2_len + 1);
 	return (str_result);
 }
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -145,32 +145,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	return (src_len);
 }
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	size_t	str_len;
-	size_t	sub_len;
-	char	*substr;
-
-	if (!s)
-	{
-		return ((char *)ft_calloc(1, sizeof(char)));
-	}
-	str_len = ft_strlen(s);
-	if (start >= str_len)
-	{
-		return ((char *)ft_calloc(1, sizeof(char)));
-	}
-	if (str_len - start < len)
-		sub_len = str_len - start;
-	else
-		sub_len = len;
-	substr = (char *)ft_calloc(sub_len + 1, sizeof(char));
-	if (!substr)
-	{
-		return (NULL);
-	}
-	ft_strlcpy(substr, s + start, sub_len + 1);
-	return (substr);
-}
-
