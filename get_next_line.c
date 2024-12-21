@@ -34,7 +34,7 @@ ssize_t	gnl_buff(char *buffer, char *remainder, int fd)
 char	*get_next_line(int fd)
 {
 	int			bytes_read;
-	char		buffer[BUFFER_SIZE + 1];
+	static char	buffer[BUFFER_SIZE + 1];
 	static char	remainder[BUFFER_SIZE + 1] = {0};
 	char		*line;
 	char		*nl;
@@ -44,9 +44,7 @@ char	*get_next_line(int fd)
 	{
 		bytes_read = gnl_buff(buffer, remainder, fd);
 		if (bytes_read <= 0)
-		{
 			return (line);
-		}
 		nl = ft_strchr(buffer, '\n');
 		if (nl)
 		{
