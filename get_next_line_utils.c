@@ -12,46 +12,6 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	if (!s)
-		return (0);
-	while (s[len])
-		len++;
-	return (len);
-}
-
-char	*ft_strcpy(char *dest, const char *src)
-{
-	char	*original;
-
-	original = dest;
-	while (*src)
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
-	return (original);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*temp_str;
@@ -71,13 +31,8 @@ void	*ft_calloc(size_t count, size_t size)
 	{
 		return (NULL);
 	}
-	ft_bzero(temp_str, total_size);
+	ft_memset(temp_str, 0, total_size);
 	return (temp_str);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
 }
 
 void	*ft_memset(void *s, int c, size_t n)

@@ -12,13 +12,38 @@
 
 #include "get_next_line.h"
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	if (!s)
+		return (0);
+	while (s[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+
 ssize_t	gnl_buff(char *buffer, char *remainder, int fd)
 {
 	size_t	i;
 
 	if (remainder[0] != '\0')
 	{
-		ft_strcpy(buffer, remainder);
+		ft_strlcpy(buffer, remainder, BUFFER_SIZE + 1);
 		remainder[0] = '\0';
 		return (ft_strlen(buffer));
 	}
@@ -50,7 +75,7 @@ char	*get_next_line(int fd)
 		{
 			*nl = '\0';
 			line = ft_strjoin(line, buffer);
-			ft_strcpy(remainder, nl + 1);
+			ft_strlcpy(remainder, nl + 1, BUFFER_SIZE + 1);
 			return (line);
 		}
 		line = ft_strjoin(line, buffer);

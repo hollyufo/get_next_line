@@ -20,19 +20,17 @@
 # include <stdint.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10000000
-#endif 
+#  define BUFFER_SIZE 42
+# endif 
 
-char	    *get_next_line(int fd);
-size_t	    ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	    *ft_strjoin(char const *s1, char const *s2);
-static char *allocate_and_copy(const char *src, size_t len);
-size_t	    ft_strlen(const char *str);
-void	    *ft_memset(void *s, int c, size_t n);
-void	    ft_bzero(void *s, size_t n);
-void	    *ft_calloc(size_t count, size_t size);
-char        *ft_strchr(const char *s, int c);
-char        *ft_strcpy(char *dest, const char *src);
-ssize_t     gnl_buff(char *buffer, char *remainder, int fd);
+char		*get_next_line(int fd);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlen(const char *str);
+void		*ft_memset(void *s, int c, size_t n);
+void		*ft_calloc(size_t count, size_t size);
+char		*ft_strchr(const char *s, int c);
+char		*ft_strcpy(char *dest, const char *src);
+ssize_t		gnl_buff(char *buffer, char *remainder, int fd);
 
 #endif

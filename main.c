@@ -22,10 +22,12 @@ int	main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (0);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		printf(">>>%s\n", line);
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
