@@ -6,7 +6,7 @@
 /*   By: imchaibi <imchaibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:09:41 by imchaibi          #+#    #+#             */
-/*   Updated: 2024/12/15 18:23:32 by imchaibi         ###   ########.fr       */
+/*   Updated: 2024/12/31 00:03:17 by imchaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (0);
 }

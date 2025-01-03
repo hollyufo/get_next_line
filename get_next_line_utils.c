@@ -6,7 +6,7 @@
 /*   By: imchaibi <imchaibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:09:47 by imchaibi          #+#    #+#             */
-/*   Updated: 2024/12/15 18:11:43 by imchaibi         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:30:39 by imchaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcpy(str_result, s1, s1_len + 1);
 	ft_strlcpy(str_result + s1_len, s2, s2_len + 1);
+	free((char *)s1);  // Free s1 if dynamically allocated
 	return (str_result);
 }
 
