@@ -6,7 +6,7 @@
 /*   By: imchaibi <imchaibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:09:43 by imchaibi          #+#    #+#             */
-/*   Updated: 2025/01/03 16:31:26 by imchaibi         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:34:58 by imchaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ char	*get_next_line(int fd)
 		bytes_read = gnl_buff(buffer, remainder, fd);
 		if (bytes_read <= 0)
 		{
-			free(line);
-			return (NULL);
+			return (line);
 		}
 		nl = ft_strchr(buffer, '\n');
 		if (nl)
