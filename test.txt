@@ -1,4 +1,1 @@
-this this the first line
-this is the second line 
-this is the third line
-and this is the last line
+this is a test

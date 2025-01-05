@@ -6,7 +6,7 @@
 /*   By: imchaibi <imchaibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:09:41 by imchaibi          #+#    #+#             */
-/*   Updated: 2024/12/31 00:03:17 by imchaibi         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:27:51 by imchaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		return (0);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

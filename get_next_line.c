@@ -6,7 +6,7 @@
 /*   By: imchaibi <imchaibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:09:43 by imchaibi          #+#    #+#             */
-/*   Updated: 2025/01/03 16:34:58 by imchaibi         ###   ########.fr       */
+/*   Updated: 2025/01/05 17:06:19 by imchaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,25 @@ char	*ft_strchr(const char *s, int c)
 
 ssize_t	gnl_buff(char *buffer, char *remainder, int fd)
 {
-	size_t	i;
-
+	ssize_t	i;
+	buffer[0] = '\0';
 	if (remainder[0] != '\0')
 	{
 		ft_strlcpy(buffer, remainder, BUFFER_SIZE + 1);
 		remainder[0] = '\0';
 		return (ft_strlen(buffer));
 	}
-	i = 0;
-	while (i < BUFFER_SIZE + 1)
-	{
+	i = read(fd, buffer, BUFFER_SIZE);
+	if (i != -1)
 		buffer[i] = '\0';
-		i++;
-	}
-	return (read(fd, buffer, BUFFER_SIZE));
+	return (i);
 }
+void *panic_exit(char *line, char *remainder){
+	free(line);
+	*remainder = '\0';
+	return (NULL);	
+}
+
 
 char	*get_next_line(int fd)
 {
@@ -68,16 +71,17 @@ char	*get_next_line(int fd)
 	while (1)
 	{
 		bytes_read = gnl_buff(buffer, remainder, fd);
-		if (bytes_read <= 0)
-		{
+		if (bytes_read == 0) // EOF
 			return (line);
-		}
+		else if (bytes_read < 0) // MID READ ERROR 
+			return (panic_exit(line, remainder));
 		nl = ft_strchr(buffer, '\n');
 		if (nl)
 		{
 			*nl = '\0';
 			line = ft_strjoin(line, buffer);
 			ft_strlcpy(remainder, nl + 1, BUFFER_SIZE + 1);
+			line = ft_strjoin(line, "\n");
 			return (line);
 		}
 		line = ft_strjoin(line, buffer);
