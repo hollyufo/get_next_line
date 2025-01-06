@@ -40,6 +40,7 @@ char	*ft_strchr(const char *s, int c)
 ssize_t	gnl_buff(char *buffer, char *remainder, int fd)
 {
 	ssize_t	i;
+
 	buffer[0] = '\0';
 	if (remainder[0] != '\0')
 	{
@@ -52,12 +53,13 @@ ssize_t	gnl_buff(char *buffer, char *remainder, int fd)
 		buffer[i] = '\0';
 	return (i);
 }
-void *panic_exit(char *line, char *remainder){
+
+void	*panic_exit(char *line, char *remainder)
+{
 	free(line);
 	*remainder = '\0';
-	return (NULL);	
+	return (NULL);
 }
-
 
 char	*get_next_line(int fd)
 {
@@ -71,9 +73,9 @@ char	*get_next_line(int fd)
 	while (1)
 	{
 		bytes_read = gnl_buff(buffer, remainder, fd);
-		if (bytes_read == 0) // EOF
+		if (bytes_read == 0)
 			return (line);
-		else if (bytes_read < 0) // MID READ ERROR 
+		else if (bytes_read < 0)
 			return (panic_exit(line, remainder));
 		nl = ft_strchr(buffer, '\n');
 		if (nl)
